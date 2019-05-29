@@ -103,11 +103,11 @@ public class TicTacToe extends JFrame {
 				}
 			});
 			if (i == 1 || i == 7) { 
-				button.setBorder(BorderFactory.createMatteBorder(0, 20, 0, 20, Color.BLACK));
+				button.setBorder(BorderFactory.createMatteBorder(0, 17, 0, 17, Color.BLACK));
 			} else if (i == 3 || i == 5) {
-				button.setBorder(BorderFactory.createMatteBorder(20, 0, 20, 0, Color.BLACK));
+				button.setBorder(BorderFactory.createMatteBorder(17, 0, 17, 0, Color.BLACK));
 			} else if (i == 4) {
-				button.setBorder(BorderFactory.createMatteBorder(20, 20, 20, 20, Color.BLACK));
+				button.setBorder(BorderFactory.createMatteBorder(17, 17, 17, 17, Color.BLACK));
 			}
 			if (i < 3) {
 				gamePanels[0].add(button);
