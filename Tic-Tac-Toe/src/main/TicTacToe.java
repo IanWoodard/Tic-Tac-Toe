@@ -137,10 +137,9 @@ public class TicTacToe extends JFrame {
 				if (numberOfTurns > 8) {
 					infoLabel.setText("TIE");
 					isDone = true;
+					return;
 				}
-				if (!isDone) {
-					updateInfoLabel();
-				}
+				updateInfoLabel();
 			}
 		}
 	}
