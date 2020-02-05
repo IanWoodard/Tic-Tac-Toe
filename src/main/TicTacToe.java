@@ -18,8 +18,8 @@ import javax.swing.SwingConstants;
 public class TicTacToe extends JFrame {
 	
 	private static final long serialVersionUID = -7316299504675729229L;
-	private static final ImageIcon ICON_X = new ImageIcon("D:\\x-image.png");
-	private static final ImageIcon ICON_O = new ImageIcon("D:\\o-image.png");	
+	private static final ImageIcon ICON_X = new ImageIcon("img\\x-image.png");
+	private static final ImageIcon ICON_O = new ImageIcon("img\\o-image.png");	
 	private static final int[][] WINNING_COMBOS = {{0, 1, 2}, {0, 3, 6}, {0, 4, 8}, {1, 4, 7}, {2, 5, 8}, {2, 4, 6}, {3, 4, 5}, {6, 7, 8}};
 	
 	private static ArrayList<Integer> xList = new ArrayList<Integer>();
@@ -148,24 +148,24 @@ public class TicTacToe extends JFrame {
 		for (int i = 0; i < 2; i++) {
 			for (int j = 0; j < WINNING_COMBOS.length; j++) {
 				if (i == 0) {
-					if (xList.contains(WINNING_COMBOS[j][0]) && xList.contains(WINNING_COMBOS[j][1]) && xList.contains(WINNING_COMBOS[j][2])) {
-						for (int k = 0; k < 3; k++) {
-							gameButtons[WINNING_COMBOS[j][k]].setBackground(Color.RED);
-						}
-						infoLabel.setText("X WINS");
-						isDone = true;
-					}
+					checkForWinInd(true, i, j);
 				} else {
-					if (oList.contains(WINNING_COMBOS[j][0]) && oList.contains(WINNING_COMBOS[j][1]) && oList.contains(WINNING_COMBOS[j][2])) {
-						for (int k = 0; k < 3; k++) {
-							gameButtons[WINNING_COMBOS[j][k]].setBackground(Color.RED);
-						}
-						infoLabel.setText("O WINS");
-						isDone = true;
-					}
+					checkForWinInd(false, i, j);
 				}
 			}
 		}
+	}
+	
+	public void checkForWinInd(boolean isX, int i, int j) {
+	  ArrayList<Integer> list = isX ? xList : oList;
+	  if (list.contains(WINNING_COMBOS[j][0]) && list.contains(WINNING_COMBOS[j][1]) && list.contains(WINNING_COMBOS[j][2])) {
+      for (int k = 0; k < 3; k++) {
+        gameButtons[WINNING_COMBOS[j][k]].setBackground(Color.RED);
+      }
+      String winner = isX ? "X" : "O";
+      infoLabel.setText(winner + " WINS");
+      isDone = true;
+    }
 	}
 	
 }
