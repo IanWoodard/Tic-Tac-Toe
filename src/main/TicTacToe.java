@@ -44,7 +44,7 @@ public class TicTacToe extends JFrame {
 		setupInfoPanel();
 		add(infoPanel);
 		setSize(900,800);
-		setResizable(false);
+		setResizable(true);
 		setLayout(new GridLayout(4, 1));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
