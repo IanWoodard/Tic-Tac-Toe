@@ -43,7 +43,7 @@ public class TicTacToe extends JFrame {
 		}
 		setupInfoPanel();
 		add(infoPanel);
-		setSize(1200,1500);
+		setSize(900,800);
 		setResizable(false);
 		setLayout(new GridLayout(4, 1));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -52,12 +52,12 @@ public class TicTacToe extends JFrame {
 	
 	public void setupInfoPanel() {
 		infoPanel.setLayout(new GridLayout(2, 1));
-		infoLabel.setFont(new Font("Serif", Font.PLAIN, 128));
+		infoLabel.setFont(new Font("Serif", Font.PLAIN, 64));
 		infoPanel.add(infoLabel);
 		JPanel restartPanel = new JPanel();
 		restartPanel.setLayout(new GridLayout(1, 3));
 		restartPanel.add(new JLabel());
-		restartButton.setFont(new Font("Serif", Font.PLAIN, 72));
+		restartButton.setFont(new Font("Serif", Font.PLAIN, 64));
 		restartButton.setBackground(Color.LIGHT_GRAY);
 		restartButton.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
 		restartButton.setFocusPainted(false);
