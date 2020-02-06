@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -18,6 +19,7 @@ import javax.swing.SwingConstants;
 public class TicTacToe extends JFrame {
 	
 	private static final long serialVersionUID = -7316299504675729229L;
+	private static final boolean aiEnabled = true;
 	private static final ImageIcon ICON_X = new ImageIcon("img\\x-image.png");
 	private static final ImageIcon ICON_O = new ImageIcon("img\\o-image.png");	
 	private static final int[][] WINNING_COMBOS = {{0, 1, 2}, {0, 3, 6}, {0, 4, 8}, {1, 4, 7}, {2, 5, 8}, {2, 4, 6}, {3, 4, 5}, {6, 7, 8}};
@@ -99,7 +101,8 @@ public class TicTacToe extends JFrame {
 			button.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					setGamePanel(button, temp);
+					boolean wasNull = setGamePanel(button, temp);
+					aiPlay(wasNull);
 				}
 			});
 			if (i == 1 || i == 7) { 
@@ -120,8 +123,9 @@ public class TicTacToe extends JFrame {
 		}
 	}
 	
-	public void setGamePanel(JButton b, int i) {
-		if (b.getIcon() == null && !isDone) {
+	public boolean setGamePanel(JButton b, int i) {
+	  boolean wasNull = b.getIcon() == null;
+		if (wasNull && !isDone) {
 			if (isXTurn) {
 				b.setIcon(ICON_X);
 				xList.add(i);
@@ -137,11 +141,12 @@ public class TicTacToe extends JFrame {
 				if (numberOfTurns > 8) {
 					infoLabel.setText("TIE");
 					isDone = true;
-					return;
+					return false;
 				}
 				updateInfoLabel();
 			}
 		}
+		return wasNull;
 	}
 	
 	public void checkForWin() {
@@ -158,7 +163,7 @@ public class TicTacToe extends JFrame {
 	
 	public void checkForWinInd(boolean isX, int i, int j) {
 	  ArrayList<Integer> list = isX ? xList : oList;
-	  if (list.contains(WINNING_COMBOS[j][0]) && list.contains(WINNING_COMBOS[j][1]) && list.contains(WINNING_COMBOS[j][2])) {
+ 	  if (list.contains(WINNING_COMBOS[j][0]) && list.contains(WINNING_COMBOS[j][1]) && list.contains(WINNING_COMBOS[j][2])) {
       for (int k = 0; k < 3; k++) {
         gameButtons[WINNING_COMBOS[j][k]].setBackground(Color.GREEN);
       }
@@ -166,6 +171,32 @@ public class TicTacToe extends JFrame {
       infoLabel.setText(winner + " WINS");
       isDone = true;
     }
+	}
+	
+	public ArrayList<Integer> getAllEmpty() {
+	  ArrayList<Integer> list = new ArrayList<Integer>();
+	  for (int i = 0; i < 9; i++) {
+	    if (!xList.contains(i) && !oList.contains(i)) {
+	      list.add(i);
+	    }
+	  }
+	  return list;
+	}
+	
+	public int getRandomEmpty() {
+	  ArrayList<Integer> list = this.getAllEmpty();
+	  if (!list.isEmpty()) {
+	    Random rand = new Random();
+	    return list.get(rand.nextInt(list.size()));
+	  }
+	  return -1;
+	}
+	
+	public void aiPlay(boolean wasNull) {
+	  if (wasNull && !isDone) {
+	    int rand = this.getRandomEmpty();
+	    setGamePanel(this.gameButtons[rand], rand);
+	  }
 	}
 	
 }
