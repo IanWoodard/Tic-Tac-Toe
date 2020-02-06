@@ -160,7 +160,7 @@ public class TicTacToe extends JFrame {
 	  ArrayList<Integer> list = isX ? xList : oList;
 	  if (list.contains(WINNING_COMBOS[j][0]) && list.contains(WINNING_COMBOS[j][1]) && list.contains(WINNING_COMBOS[j][2])) {
       for (int k = 0; k < 3; k++) {
-        gameButtons[WINNING_COMBOS[j][k]].setBackground(Color.RED);
+        gameButtons[WINNING_COMBOS[j][k]].setBackground(Color.GREEN);
       }
       String winner = isX ? "X" : "O";
       infoLabel.setText(winner + " WINS");
