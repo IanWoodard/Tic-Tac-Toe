@@ -19,7 +19,6 @@ import javax.swing.SwingConstants;
 public class TicTacToe extends JFrame {
 	
 	private static final long serialVersionUID = -7316299504675729229L;
-	private static final boolean aiEnabled = true;
 	private static final ImageIcon ICON_X = new ImageIcon("img\\x-image.png");
 	private static final ImageIcon ICON_O = new ImageIcon("img\\o-image.png");	
 	private static final int[][] WINNING_COMBOS = {{0, 1, 2}, {0, 3, 6}, {0, 4, 8}, {1, 4, 7}, {2, 5, 8}, {2, 4, 6}, {3, 4, 5}, {6, 7, 8}};
