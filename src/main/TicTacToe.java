@@ -114,7 +114,6 @@ public class TicTacToe extends JFrame {
 			if (i < 3) {
 				gamePanels[0].add(button);
 			} else if (i >= 3 && i < 6) {
-				
 				gamePanels[1].add(button);
 			} else {
 				gamePanels[2].add(button);
