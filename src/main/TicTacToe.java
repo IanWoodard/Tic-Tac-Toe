@@ -36,7 +36,7 @@ public class TicTacToe extends JFrame {
 	JButton restartButton = new JButton("Restart");
 	
 	public TicTacToe() {
-		super("Tic-Tac-Toe");
+		super("Tic-Tac-Toe");//Adds title to window
 		setupGamePanels();
 		for (JPanel p : gamePanels) {
 			p.setLayout(new GridLayout(1, 3));
@@ -65,7 +65,7 @@ public class TicTacToe extends JFrame {
 		restartButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				reset();
+				reset();//Resets the game
 			}
 		});
 		restartPanel.add(restartButton);
@@ -104,6 +104,7 @@ public class TicTacToe extends JFrame {
 					aiPlay(wasNull);
 				}
 			});
+			//Adds the outline of the tic tac toe board
 			if (i == 1 || i == 7) { 
 				button.setBorder(BorderFactory.createMatteBorder(0, 17, 0, 17, Color.BLACK));
 			} else if (i == 3 || i == 5) {
@@ -148,7 +149,7 @@ public class TicTacToe extends JFrame {
 	}
 	
 	public void checkForWin() {
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < 2; i++) {//2 times as both X and O need checking
 			for (int j = 0; j < WINNING_COMBOS.length; j++) {
 				if (i == 0) {
 					checkForWinInd(true, i, j);
