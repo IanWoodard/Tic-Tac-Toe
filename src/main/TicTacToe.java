@@ -16,6 +16,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+/**
+ * 
+ * @author Ian Woodard
+ *
+ */
 public class TicTacToe extends JFrame {
 	
 	private static final long serialVersionUID = -7316299504675729229L;
