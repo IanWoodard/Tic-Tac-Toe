@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.Timer;
 
 /**
  * 
@@ -169,7 +170,13 @@ public class TicTacToe extends JFrame {
 	  ArrayList<Integer> list = isX ? xList : oList;
  	  if (list.contains(WINNING_COMBOS[j][0]) && list.contains(WINNING_COMBOS[j][1]) && list.contains(WINNING_COMBOS[j][2])) {
       for (int k = 0; k < 3; k++) {
-        gameButtons[WINNING_COMBOS[j][k]].setBackground(Color.GREEN);
+        int delay = k*200;
+        int temp = k;
+        Timer timer = new Timer(delay, e-> {
+          gameButtons[WINNING_COMBOS[j][temp]].setBackground(Color.GREEN);
+        });
+        timer.setRepeats(false);
+        timer.start();
       }
       String winner = isX ? "X" : "O";
       infoLabel.setText(winner + " WINS");
