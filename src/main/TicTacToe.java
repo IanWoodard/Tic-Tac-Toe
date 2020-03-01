@@ -206,15 +206,17 @@ public class TicTacToe extends JFrame {
 	public void aiPlay(boolean wasNull) {
 	  if (wasNull && !isDone) {
 	    int rand = this.getRandomEmpty();
-	    if (tryStopWin() != -1) {
-	      rand = tryStopWin();
-	      System.out.println(rand);
+	    if (tryToWin() != -1) {
+	      rand = tryToWin();
+	    }
+	    else if (tryToStopWin() != -1) {
+	      rand = tryToStopWin();
 	    }
 	    setGamePanel(this.gameButtons[rand], rand);
 	  }
 	}
 	
-	public int tryStopWin() {
+	public int tryToStopWin() {
 	  for (int i = 0; i < WINNING_COMBOS.length; i++) {
 	    if (xList.contains(WINNING_COMBOS[i][1]) && xList.contains(WINNING_COMBOS[i][2]) && !oList.contains(WINNING_COMBOS[i][0])) {
 	      return WINNING_COMBOS[i][0];
@@ -227,6 +229,21 @@ public class TicTacToe extends JFrame {
 	    }
 	  }
 	  return -1;
+	}
+	
+	public int tryToWin() {
+	  for (int i = 0; i < WINNING_COMBOS.length; i++) {
+      if (oList.contains(WINNING_COMBOS[i][1]) && oList.contains(WINNING_COMBOS[i][2]) && !xList.contains(WINNING_COMBOS[i][0])) {
+        return WINNING_COMBOS[i][0];
+      }
+      else if (oList.contains(WINNING_COMBOS[i][0]) && oList.contains(WINNING_COMBOS[i][2]) && !xList.contains(WINNING_COMBOS[i][1])) {
+        return WINNING_COMBOS[i][1];
+      }
+      else if (oList.contains(WINNING_COMBOS[i][0]) && oList.contains(WINNING_COMBOS[i][1]) && !xList.contains(WINNING_COMBOS[i][2])) {
+        return WINNING_COMBOS[i][2];
+      }
+    }
+    return -1;
 	}
 	
 }
