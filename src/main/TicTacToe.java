@@ -206,8 +206,27 @@ public class TicTacToe extends JFrame {
 	public void aiPlay(boolean wasNull) {
 	  if (wasNull && !isDone) {
 	    int rand = this.getRandomEmpty();
+	    if (tryStopWin() != -1) {
+	      rand = tryStopWin();
+	      System.out.println(rand);
+	    }
 	    setGamePanel(this.gameButtons[rand], rand);
 	  }
+	}
+	
+	public int tryStopWin() {
+	  for (int i = 0; i < WINNING_COMBOS.length; i++) {
+	    if (xList.contains(WINNING_COMBOS[i][1]) && xList.contains(WINNING_COMBOS[i][2]) && !oList.contains(WINNING_COMBOS[i][0])) {
+	      return WINNING_COMBOS[i][0];
+	    }
+	    else if (xList.contains(WINNING_COMBOS[i][0]) && xList.contains(WINNING_COMBOS[i][2]) && !oList.contains(WINNING_COMBOS[i][1])) {
+	      return WINNING_COMBOS[i][1];
+	    }
+	    else if (xList.contains(WINNING_COMBOS[i][0]) && xList.contains(WINNING_COMBOS[i][1]) && !oList.contains(WINNING_COMBOS[i][2])) {
+	      return WINNING_COMBOS[i][2];
+	    }
+	  }
+	  return -1;
 	}
 	
 }
