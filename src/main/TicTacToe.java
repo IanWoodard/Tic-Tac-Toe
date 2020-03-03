@@ -205,14 +205,8 @@ public class TicTacToe extends JFrame {
 	
 	public void aiPlay(boolean wasNull) {
 	  if (wasNull && !isDone) {
-	    int rand = this.getRandomEmpty();
-	    if (tryToWin() != -1) {
-	      rand = tryToWin();
-	    }
-	    else if (tryToStopWin() != -1) {
-	      rand = tryToStopWin();
-	    }
-	    setGamePanel(this.gameButtons[rand], rand);
+	    int moveIndex = tryToFindBestMove() == -1 ? getRandomEmpty() : tryToFindBestMove();
+	    setGamePanel(this.gameButtons[moveIndex], moveIndex);
 	  }
 	}
 	
@@ -245,5 +239,17 @@ public class TicTacToe extends JFrame {
     }
     return -1;
 	}
+	
+	public int tryToFindBestMove() {
+    int firstTry = tryToWin();
+    int secondTry = tryToStopWin();
+    if (firstTry != -1) {
+      return firstTry;
+    }
+    else if (secondTry != -1) {
+      return secondTry;
+    }
+    return -1;
+  }
 	
 }
