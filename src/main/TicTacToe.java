@@ -57,7 +57,7 @@ public class TicTacToe extends JFrame {
 		setVisible(true);
 	}
 	
-	public void setupInfoPanel() {
+	private void setupInfoPanel() {
 		infoPanel.setLayout(new GridLayout(2, 1));
 		infoLabel.setFont(new Font("Serif", Font.PLAIN, 64));
 		infoPanel.add(infoLabel);
@@ -79,7 +79,7 @@ public class TicTacToe extends JFrame {
 		infoPanel.add(restartPanel);
 	}
 	
-	public void reset() {
+	private void reset() {
 		numberOfTurns = 0;
 		isDone = false;
 		isXTurn = true;
@@ -92,12 +92,12 @@ public class TicTacToe extends JFrame {
 		}
 	}
 	
-	public void updateInfoLabel() {
+	private void updateInfoLabel() {
 		String currentlyUp = isXTurn ? "Currently Up: X" : "Currently Up: O";
 		infoLabel.setText(currentlyUp);
 	}
 	
-	public void setupGamePanels() {
+	private void setupGamePanels() {
 		for (int i = 0; i < gameButtons.length; i++) {
 			int temp = i;
 			JButton button = gameButtons[i];
@@ -128,7 +128,7 @@ public class TicTacToe extends JFrame {
 		}
 	}
 	
-	public boolean setGamePanel(JButton b, int i) {
+	private boolean setGamePanel(JButton b, int i) {
 	  boolean wasNull = b.getIcon() == null;
 		if (wasNull && !isDone) {
 			if (isXTurn) {
@@ -154,7 +154,7 @@ public class TicTacToe extends JFrame {
 		return wasNull;
 	}
 	
-	public void checkForWin() {
+	private void checkForWin() {
 		for (int i = 0; i < 2; i++) {//2 times as both X and O need checking
 			for (int j = 0; j < WINNING_COMBOS.length; j++) {
 				if (i == 0) {
@@ -166,7 +166,7 @@ public class TicTacToe extends JFrame {
 		}
 	}
 	
-	public void checkForWinInd(boolean isX, int i, int j) {
+	private void checkForWinInd(boolean isX, int i, int j) {
 	  ArrayList<Integer> list = isX ? xList : oList;
  	  if (list.contains(WINNING_COMBOS[j][0]) && list.contains(WINNING_COMBOS[j][1]) && list.contains(WINNING_COMBOS[j][2])) {
       for (int k = 0; k < 3; k++) {
@@ -184,7 +184,7 @@ public class TicTacToe extends JFrame {
     }
 	}
 	
-	public ArrayList<Integer> getAllEmpty() {
+	private ArrayList<Integer> getAllEmpty() {
 	  ArrayList<Integer> list = new ArrayList<Integer>();
 	  for (int i = 0; i < 9; i++) {
 	    if (!xList.contains(i) && !oList.contains(i)) {
@@ -194,7 +194,7 @@ public class TicTacToe extends JFrame {
 	  return list;
 	}
 	
-	public int getRandomEmpty() {
+	private int getRandomEmpty() {
 	  ArrayList<Integer> list = this.getAllEmpty();
 	  if (!list.isEmpty()) {
 	    Random rand = new Random();
@@ -203,14 +203,14 @@ public class TicTacToe extends JFrame {
 	  return -1;
 	}
 	
-	public void aiPlay(boolean wasNull) {
+	private void aiPlay(boolean wasNull) {
 	  if (wasNull && !isDone) {
 	    int moveIndex = tryToFindBestMove() == -1 ? getRandomEmpty() : tryToFindBestMove();
 	    setGamePanel(this.gameButtons[moveIndex], moveIndex);
 	  }
 	}
 	
-	public int tryToStopWin() {
+	private int tryToStopWin() {
 	  for (int i = 0; i < WINNING_COMBOS.length; i++) {
 	    if (xList.contains(WINNING_COMBOS[i][1]) && xList.contains(WINNING_COMBOS[i][2]) && !oList.contains(WINNING_COMBOS[i][0])) {
 	      return WINNING_COMBOS[i][0];
@@ -225,7 +225,7 @@ public class TicTacToe extends JFrame {
 	  return -1;
 	}
 	
-	public int tryToWin() {
+	private int tryToWin() {
 	  for (int i = 0; i < WINNING_COMBOS.length; i++) {
       if (oList.contains(WINNING_COMBOS[i][1]) && oList.contains(WINNING_COMBOS[i][2]) && !xList.contains(WINNING_COMBOS[i][0])) {
         return WINNING_COMBOS[i][0];
@@ -240,7 +240,7 @@ public class TicTacToe extends JFrame {
     return -1;
 	}
 	
-	public int tryToFindBestMove() {
+	private int tryToFindBestMove() {
     int firstTry = tryToWin();
     int secondTry = tryToStopWin();
     if (firstTry != -1) {
