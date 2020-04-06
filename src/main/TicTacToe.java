@@ -36,11 +36,11 @@ public class TicTacToe extends JFrame {
 	private static boolean isDone = false;
 	private static int numberOfTurns = 0;
 	
-	JPanel[] gamePanels = {new JPanel(), new JPanel(), new JPanel()};
-	JPanel infoPanel = new JPanel();
-	JButton[] gameButtons = {new JButton(), new JButton(), new JButton(), new JButton(), new JButton(), new JButton(), new JButton(), new JButton(), new JButton()};
-	JLabel infoLabel = new JLabel("Currently Up: X", SwingConstants.CENTER);
-	JButton restartButton = new JButton("Restart");
+	private static JPanel[] gamePanels = {new JPanel(), new JPanel(), new JPanel()};
+	private static JPanel infoPanel = new JPanel();
+	private static JButton[] gameButtons = {new JButton(), new JButton(), new JButton(), new JButton(), new JButton(), new JButton(), new JButton(), new JButton(), new JButton()};
+	private static JLabel infoLabel = new JLabel("Currently Up: X", SwingConstants.CENTER);
+	private static JButton restartButton = new JButton("Restart");
 	
 	private TicTacToe() {
 		super("Tic-Tac-Toe");//Adds title to window
@@ -136,6 +136,10 @@ public class TicTacToe extends JFrame {
 		}
 	}
 	
+	public JButton[] getGameButtons() {
+	  return TicTacToe.gameButtons;
+	}
+	
 	private boolean setGamePanel(JButton b, int i) {
 	  boolean wasNull = b.getIcon() == null;
 		if (wasNull && !isDone) {
@@ -214,7 +218,7 @@ public class TicTacToe extends JFrame {
 	private void aiPlay(boolean wasNull) {
 	  if (wasNull && !isDone) {
 	    int moveIndex = tryToFindBestMove() == -1 ? getRandomEmpty() : tryToFindBestMove();
-	    setGamePanel(this.gameButtons[moveIndex], moveIndex);
+	    setGamePanel(TicTacToe.gameButtons[moveIndex], moveIndex);
 	  }
 	}
 	
