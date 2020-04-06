@@ -28,6 +28,7 @@ public class TicTacToe extends JFrame {
 	private static final ImageIcon ICON_X = new ImageIcon("img\\x-image.png");
 	private static final ImageIcon ICON_O = new ImageIcon("img\\o-image.png");	
 	private static final int[][] WINNING_COMBOS = {{0, 1, 2}, {0, 3, 6}, {0, 4, 8}, {1, 4, 7}, {2, 5, 8}, {2, 4, 6}, {3, 4, 5}, {6, 7, 8}};
+	private static TicTacToe instance = null;
 	
 	private static ArrayList<Integer> xList = new ArrayList<Integer>();
 	private static ArrayList<Integer> oList = new ArrayList<Integer>();
@@ -41,7 +42,7 @@ public class TicTacToe extends JFrame {
 	JLabel infoLabel = new JLabel("Currently Up: X", SwingConstants.CENTER);
 	JButton restartButton = new JButton("Restart");
 	
-	public TicTacToe() {
+	private TicTacToe() {
 		super("Tic-Tac-Toe");//Adds title to window
 		setupGamePanels();
 		for (JPanel p : gamePanels) {
@@ -55,6 +56,13 @@ public class TicTacToe extends JFrame {
 		setLayout(new GridLayout(4, 1));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
+	}
+	
+	public static TicTacToe getInstance() {
+	  if (TicTacToe.instance == null) {
+	    TicTacToe.instance = new TicTacToe();
+	  }
+	  return TicTacToe.instance;
 	}
 	
 	private void setupInfoPanel() {
